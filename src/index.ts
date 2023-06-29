@@ -1,15 +1,16 @@
-import express from 'express';
-import morgan from 'morgan';
+import "reflect-metadata";
+import app from "./app";
+import { DBDataSource } from "./config/data-source";
 
-const app = express();
-app.use(morgan('dev'));
+async function main() {
+  try {
+    await DBDataSource.initialize();
+    app.listen(3001);
+    console.log("Server is running on port 3001");
+  } catch (error) {
+    console.error("An error occurred during initialization:", error);
+    process.exit(1);
+  }
+}
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-    }
-);
-
-app.listen(3001, () => {
-    console.log('Server is running on port 3001');
-    }
-);  
+main();
