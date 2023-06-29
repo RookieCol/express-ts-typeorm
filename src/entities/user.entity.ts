@@ -11,23 +11,25 @@ import {
 @Entity()
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  id: number;
 
   @Column()
-  name!: string;
+  name: string;
 
-  @Column()
-  email!: string;
+  @Column({
+    unique:true
+  })
+  email: string;
 
   @Column()
   password!: string;
 
   @CreateDateColumn()
-  createdAt!: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updatedAt!: Date;
+  updatedAt: Date;
 
   @DeleteDateColumn()
-  deletedAt!: Date;
+  deletedAt: Date;
 }
